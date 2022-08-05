@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('test', function () {
+//     return 'hello world';
+// });
+
+// Route::get('sum/{a}/{b}', function ($a, $b) {
+//     return $a + $b;
+// });
+
+Route::get('calculator', [CalculatorController::class, 'calculatorPage']);
+
+Route::post('sum', [CalculatorController::class, 'sum']);
+
+Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+
+Route::post('users', [UserController::class, 'store'])->name('users.store');
+
+Route::get('users', [UserController::class, 'index'])->name('users.index');
